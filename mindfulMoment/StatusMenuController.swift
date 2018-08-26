@@ -9,18 +9,27 @@ class StatusMenuController: NSObject {
         NSApplication.shared.terminate(self)
     }
 
+    var Timestamp: String {
+        return String(String(format:"%.0f", NSDate().timeIntervalSince1970 * 1000).prefix(10))
+    }
+
     @IBAction func addClick(_: NSMenuItem) {
-        // if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-        //     let fileURL = dir.appendingPathComponent(databaseFile)
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(databaseFile)
 
-        //     let outString = "Write this text to the file"
-        //     do {
-        //         try outString.write(to: fileURL, atomically: true, encoding: .utf8)
-        //     } catch {
-        //         print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
-        //     }
 
-        // }
+            var content =  getDatabaseContent()
+            let now = Timestamp  + "\n"
+
+            content = content + now
+
+            do {
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+            } catch {
+                print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
+            }
+
+        }
     }
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -32,8 +41,14 @@ class StatusMenuController: NSObject {
         statusItem.menu = statusMenu
 
         let content = getDatabaseContent()
+        let linesCount = content.reduce(into: 0) { (count, letter) in
+             if letter == "\n" {      // This treats CRLF as one "letter", contrary to UnicodeScalars
+                count += 1
+             }
+        }
+
         let editMenuItem = NSMenuItem()
-        editMenuItem.title = content
+        editMenuItem.title = "Total: \(linesCount)"
         statusMenu.addItem(editMenuItem)
     }
 

@@ -11,19 +11,19 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="mindfulMoment" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="mindfulMoment" customModuleProvider="target"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="Xf8-Bd-utg" customClass="StatusMenuController" customModule="mindfulMoment" customModuleProvider="target">
             <connections>
-                <outlet property="quitClicked" destination="a7c-qn-Qi1" id="Mez-Sb-6Du"/>
-                <outlet property="statusMenu" destination="g09-Et-Tnb" id="SOC-TG-hQD"/>
+                <outlet property="statusMenu" destination="g09-Et-Tnb" id="6ok-Tt-6NI"/>
             </connections>
         </customObject>
-        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="g09-Et-Tnb">
             <items>
                 <menuItem title="Quit" keyEquivalent="c" id="a7c-qn-Qi1">
                     <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                     <connections>
-                        <action selector="quitClick:" target="Voe-Tx-rLC" id="CDk-Jq-0H9"/>
+                        <action selector="quitClick:" target="Xf8-Bd-utg" id="Ibb-aT-nGc"/>
                     </connections>
                 </menuItem>
             </items>

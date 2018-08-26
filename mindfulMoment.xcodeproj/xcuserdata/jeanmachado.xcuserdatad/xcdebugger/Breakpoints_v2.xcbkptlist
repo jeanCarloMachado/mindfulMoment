@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindfulMoment/AppDelegate.swift"
-            timestampString = "556977398.377459"
+            timestampString = "556978597.032307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindfulMoment/AppDelegate.swift"
-            timestampString = "556977398.377876"
+            timestampString = "556978597.03341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

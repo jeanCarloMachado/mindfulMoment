@@ -9,27 +9,22 @@ class StatusMenuController: NSObject {
         NSApplication.shared.terminate(self)
     }
 
+    @IBOutlet weak var counter: NSMenuItem!
+
     var Timestamp: String {
         return String(String(format:"%.0f", NSDate().timeIntervalSince1970 * 1000).prefix(10))
     }
 
     @IBAction func addClick(_: NSMenuItem) {
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(databaseFile)
 
+        let now = Timestamp  + "\n"
+        var content = getDatabaseContent()
+        content = content + now
 
-            var content =  getDatabaseContent()
-            let now = Timestamp  + "\n"
+        writeToDatabase(content: content)
 
-            content = content + now
-
-            do {
-                try content.write(to: fileURL, atomically: true, encoding: .utf8)
-            } catch {
-                print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
-            }
-
-        }
+        let linesCount = countLines(str: content)
+        counter.title = "Total: \(linesCount)"
     }
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -41,15 +36,18 @@ class StatusMenuController: NSObject {
         statusItem.menu = statusMenu
 
         let content = getDatabaseContent()
-        let linesCount = content.reduce(into: 0) { (count, letter) in
+        let linesCount = countLines(str: content)
+        counter.title = "Total: \(linesCount)"
+    }
+
+    func countLines(str: String) -> Int {
+
+        return  str.reduce(into: 0) { (count, letter) in
              if letter == "\n" {      // This treats CRLF as one "letter", contrary to UnicodeScalars
                 count += 1
              }
         }
 
-        let editMenuItem = NSMenuItem()
-        editMenuItem.title = "Total: \(linesCount)"
-        statusMenu.addItem(editMenuItem)
     }
 
     func getDatabaseContent() -> String {
@@ -64,5 +62,18 @@ class StatusMenuController: NSObject {
         }
 
         return text
+    }
+
+    func writeToDatabase(content: String) {
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(databaseFile)
+
+            do {
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+            } catch {
+                print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
+            }
+
+        }
     }
 }

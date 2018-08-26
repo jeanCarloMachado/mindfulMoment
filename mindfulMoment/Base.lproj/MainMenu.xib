@@ -15,16 +15,20 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="Xf8-Bd-utg" customClass="StatusMenuController" customModule="mindfulMoment" customModuleProvider="target">
             <connections>
+                <outlet property="counter" destination="pWl-9j-BUY" id="Zhs-qh-GBB"/>
                 <outlet property="statusMenu" destination="g09-Et-Tnb" id="6ok-Tt-6NI"/>
             </connections>
         </customObject>
         <menu id="g09-Et-Tnb">
             <items>
-                <menuItem title="Add moment" id="J2Y-Or-R5W">
+                <menuItem title="Add moment" id="J2Y-Or-R5W" userLabel="shortcuts">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="addClick:" target="Xf8-Bd-utg" id="E1n-Ki-lpk"/>
                     </connections>
+                </menuItem>
+                <menuItem title="Item" id="pWl-9j-BUY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Quit" keyEquivalent="c" id="a7c-qn-Qi1">
                     <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>

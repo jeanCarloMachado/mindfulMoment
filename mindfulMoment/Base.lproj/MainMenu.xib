@@ -16,6 +16,7 @@
         <customObject id="Xf8-Bd-utg" customClass="StatusMenuController" customModule="mindfulMoment" customModuleProvider="target">
             <connections>
                 <outlet property="counter" destination="pWl-9j-BUY" id="Zhs-qh-GBB"/>
+                <outlet property="counterYesterday" destination="b3d-CG-bHc" id="Byd-NC-bHY"/>
                 <outlet property="statusMenu" destination="g09-Et-Tnb" id="6ok-Tt-6NI"/>
             </connections>
         </customObject>
@@ -27,7 +28,10 @@
                         <action selector="addClick:" target="Xf8-Bd-utg" id="E1n-Ki-lpk"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Item" id="pWl-9j-BUY">
+                <menuItem title="Today:" id="pWl-9j-BUY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Yesterday:" id="b3d-CG-bHc">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Quit" keyEquivalent="c" id="a7c-qn-Qi1">
@@ -37,7 +41,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-304" y="19"/>
+            <point key="canvasLocation" x="-441" y="14"/>
         </menu>
     </objects>
 </document>

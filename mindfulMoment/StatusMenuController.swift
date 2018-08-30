@@ -10,21 +10,35 @@ class StatusMenuController: NSObject {
     }
 
     @IBOutlet weak var counter: NSMenuItem!
-
+    @IBOutlet weak var counterYesterday: NSMenuItem!
+    
     var Timestamp: String {
         return String(String(format:"%.0f", NSDate().timeIntervalSince1970 * 1000).prefix(10))
     }
 
     @IBAction func addClick(_: NSMenuItem) {
+        var content = getDatabaseContent()
 
         let now = Timestamp  + "\n"
-        var content = getDatabaseContent()
         content = content + now
-
         writeToDatabase(content: content)
 
-        let linesCount = countLines(str: content)
-        counter.title = "Total: \(linesCount)"
+        let databaseLines = content.components(separatedBy: ["\n"])
+
+
+        let resultsToday = databaseLines.filter() { (entry) in
+            let date = Date(timeIntervalSince1970: (entry as NSString).doubleValue)
+            return Calendar.current.isDateInToday(date)
+        }
+
+        counter.title = "Today: \(resultsToday.count)"
+
+
+        let resultsYesterday = databaseLines.filter() { (entry) in
+            let date = Date(timeIntervalSince1970: (entry as NSString).doubleValue)
+            return Calendar.current.isDateInYesterday(date)
+        }
+        counterYesterday.title = "Yesterday: \(resultsYesterday.count)"
     }
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -35,18 +49,21 @@ class StatusMenuController: NSObject {
         statusItem.image = icon
         statusItem.menu = statusMenu
 
-        let content = getDatabaseContent()
-        let linesCount = countLines(str: content)
-        counter.title = "Total: \(linesCount)"
-    }
+        let databaseLines = getDatabaseContent().components(separatedBy: ["\n"])
 
-    func countLines(str: String) -> Int {
-
-        return  str.reduce(into: 0) { (count, letter) in
-             if letter == "\n" {      // This treats CRLF as one "letter", contrary to UnicodeScalars
-                count += 1
-             }
+        let resultsToday = databaseLines.filter() { (entry) in
+            let date = Date(timeIntervalSince1970: (entry as NSString).doubleValue)
+            return Calendar.current.isDateInToday(date)
         }
+
+        counter.title = "Today: \(resultsToday.count)"
+
+
+        let resultsYesterday = databaseLines.filter() { (entry) in
+            let date = Date(timeIntervalSince1970: (entry as NSString).doubleValue)
+            return Calendar.current.isDateInYesterday(date)
+        }
+        counterYesterday.title = "Yesterday: \(resultsYesterday.count)"
 
     }
 

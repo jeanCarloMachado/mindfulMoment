@@ -86,7 +86,11 @@ class StatusMenuController: NSObject {
             let fileURL = dir.appendingPathComponent(databaseFile)
 
             do {
-                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+                let fileHandle = try FileHandle(forWritingTo: fileURL)
+                fileHandle.seekToEndOfFile()
+                fileHandle.write(content.data(using: .utf8)!)
+                fileHandle.closeFile()
+
             } catch {
                 print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
             }

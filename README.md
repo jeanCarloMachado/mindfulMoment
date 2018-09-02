@@ -24,6 +24,6 @@ Contributions are welcomed!
 ## ROADMAP
 
  - Add icon
- - Add yesterday resume
  - Add shortcut support
  - Publish it
+~~ - Add yesterday~~

@@ -11,7 +11,7 @@ class StatusMenuController: NSObject {
 
     @IBOutlet weak var counter: NSMenuItem!
     @IBOutlet weak var counterYesterday: NSMenuItem!
-    
+
     var Timestamp: String {
         return String(String(format:"%.0f", NSDate().timeIntervalSince1970 * 1000).prefix(10))
     }
@@ -21,7 +21,7 @@ class StatusMenuController: NSObject {
 
         let now = Timestamp  + "\n"
         content = content + now
-        writeToDatabase(content: content)
+        writeEntryToDatabase(entry: now)
 
         let databaseLines = content.components(separatedBy: ["\n"])
 
@@ -81,14 +81,14 @@ class StatusMenuController: NSObject {
         return text
     }
 
-    func writeToDatabase(content: String) {
+    func writeEntryToDatabase(entry: String) {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(databaseFile)
 
             do {
                 let fileHandle = try FileHandle(forWritingTo: fileURL)
                 fileHandle.seekToEndOfFile()
-                fileHandle.write(content.data(using: .utf8)!)
+                fileHandle.write(entry.data(using: .utf8)!)
                 fileHandle.closeFile()
 
             } catch {

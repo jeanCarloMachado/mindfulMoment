@@ -11,13 +11,21 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="mindfulMoment" customModuleProvider="target"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="mindfulMoment" customModuleProvider="target">
+            <connections>
+                <outlet property="counter" destination="pWl-9j-BUY" id="NVR-Ec-v25"/>
+                <outlet property="counterYesterday" destination="b3d-CG-bHc" id="QoZ-A0-MSM"/>
+                <outlet property="quitClick" destination="a7c-qn-Qi1" id="Vha-pw-h2F"/>
+                <outlet property="statusMenu" destination="g09-Et-Tnb" id="URc-qA-s1S"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="Xf8-Bd-utg" customClass="StatusMenuController" customModule="mindfulMoment" customModuleProvider="target">
             <connections>
                 <outlet property="counter" destination="pWl-9j-BUY" id="Zhs-qh-GBB"/>
                 <outlet property="counterYesterday" destination="b3d-CG-bHc" id="Byd-NC-bHY"/>
                 <outlet property="statusMenu" destination="g09-Et-Tnb" id="6ok-Tt-6NI"/>
+                <outlet property="view" destination="g09-Et-Tnb" id="fgP-Yr-jRN"/>
             </connections>
         </customObject>
         <menu id="g09-Et-Tnb">
@@ -25,7 +33,7 @@
                 <menuItem title="Add moment" id="J2Y-Or-R5W" userLabel="shortcuts">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="addClick:" target="Xf8-Bd-utg" id="E1n-Ki-lpk"/>
+                        <action selector="addClick:" target="Voe-Tx-rLC" id="XZL-Uh-LGV"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Today:" id="pWl-9j-BUY">
@@ -37,11 +45,11 @@
                 <menuItem title="Quit" keyEquivalent="c" id="a7c-qn-Qi1">
                     <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                     <connections>
-                        <action selector="quitClick:" target="Xf8-Bd-utg" id="Ibb-aT-nGc"/>
+                        <action selector="quitClick:" target="Voe-Tx-rLC" id="Yhe-kz-DZ4"/>
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-441" y="14"/>
+            <point key="canvasLocation" x="-1777" y="-135"/>
         </menu>
     </objects>
 </document>

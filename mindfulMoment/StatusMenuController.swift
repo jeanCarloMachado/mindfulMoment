@@ -43,11 +43,31 @@ class StatusMenuController: NSObject {
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
+    @objc func foo(_ sender: NSStatusBarButton) {
+        counter.title = "Today: abc"
+
+        let notification = NSUserNotification()
+        notification.title = "Jean Machado"
+        notification.informativeText = "The body of this Swift notification"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+   
+
     override func awakeFromNib() {
-        let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))
-        icon?.isTemplate = true // best for dark mode
-        statusItem.image = icon
+
         statusItem.menu = statusMenu
+
+        if let button = statusItem.button {
+            let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))
+            icon?.isTemplate = false // best for dark mode
+            button.image = icon
+            button.action =  #selector(foo(_:))
+        }
+
+
+     
 
         let databaseLines = getDatabaseContent().components(separatedBy: ["\n"])
 
@@ -66,6 +86,7 @@ class StatusMenuController: NSObject {
         counterYesterday.title = "Yesterday: \(resultsYesterday.count)"
 
     }
+
 
     func getDatabaseContent() -> String {
         var text = ""

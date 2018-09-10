@@ -10,25 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindfulMoment/AppDelegate.swift"
-            timestampString = "557000059.688583"
+            timestampString = "558250386.464653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mindfulMoment/AppDelegate.swift"
-            timestampString = "557000059.6886621"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21">
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "addClick(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
